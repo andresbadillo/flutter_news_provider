@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:news_provider/src/pages/tabs_page.dart';
+import 'package:news_provider/src/services/news_service.dart';
+import 'package:provider/provider.dart';
+
+import 'src/theme/theme.dart';
 
 void main() => runApp(const MyApp());
 
@@ -7,15 +13,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Material App',
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Material App Bar'),
-        ),
-        body: const Center(
-          child: Text('Hello World'),
-        ),
+    SystemChrome.setSystemUIOverlayStyle(
+        const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => NewsService()),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: myTheme,
+        title: 'Material App',
+        home: TabsPage(),
       ),
     );
   }
