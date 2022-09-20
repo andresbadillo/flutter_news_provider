@@ -6,14 +6,14 @@ import 'dart:convert';
 
 class NewsResponse {
   NewsResponse({
-    required this.status,
-    required this.totalResults,
-    required this.articles,
+    this.status,
+    this.totalResults,
+    this.articles,
   });
 
-  String status;
-  int totalResults;
-  List<Article> articles;
+  String? status;
+  int? totalResults;
+  List<Article>? articles;
 
   factory NewsResponse.fromJson(String str) =>
       NewsResponse.fromMap(json.decode(str));
@@ -30,30 +30,30 @@ class NewsResponse {
   Map<String, dynamic> toMap() => {
         "status": status,
         "totalResults": totalResults,
-        "articles": List<dynamic>.from(articles.map((x) => x.toMap())),
+        "articles": List<dynamic>.from(articles!.map((x) => x.toMap())),
       };
 }
 
 class Article {
   Article({
-    required this.source,
-    required this.author,
-    required this.title,
-    required this.description,
-    required this.url,
-    required this.urlToImage,
-    required this.publishedAt,
-    required this.content,
+    this.source,
+    this.author,
+    this.title,
+    this.description,
+    this.url,
+    this.urlToImage,
+    this.publishedAt,
+    this.content,
   });
 
-  Source source;
-  String author;
-  String title;
-  String description;
-  String url;
-  String urlToImage;
-  DateTime publishedAt;
-  String content;
+  Source? source;
+  String? author;
+  String? title;
+  String? description;
+  String? url;
+  String? urlToImage;
+  DateTime? publishedAt;
+  String? content;
 
   factory Article.fromJson(String str) => Article.fromMap(json.decode(str));
 
@@ -71,25 +71,25 @@ class Article {
       );
 
   Map<String, dynamic> toMap() => {
-        "source": source.toMap(),
+        "source": source!.toMap(),
         "author": author == null ? null : author,
         "title": title,
         "description": description,
         "url": url,
         "urlToImage": urlToImage,
-        "publishedAt": publishedAt.toIso8601String(),
+        "publishedAt": publishedAt!.toIso8601String(),
         "content": content == null ? null : content,
       };
 }
 
 class Source {
   Source({
-    required this.id,
-    required this.name,
+    this.id,
+    this.name,
   });
 
-  String id;
-  String name;
+  String? id;
+  String? name;
 
   factory Source.fromJson(String str) => Source.fromMap(json.decode(str));
 

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:news_provider/src/services/news_service.dart';
+import 'package:news_provider/src/theme/theme.dart';
 import 'package:provider/provider.dart';
+import 'package:news_provider/src/pages/tab2_page.dart';
+import 'package:news_provider/src/pages/tab1_page.dart';
 
 class TabsPage extends StatelessWidget {
   const TabsPage({Key? key}) : super(key: key);
@@ -30,12 +32,8 @@ class _Paginas extends StatelessWidget {
       controller: navegacionModel.pageController,
       physics: const NeverScrollableScrollPhysics(),
       children: [
-        Container(
-          color: Colors.red,
-        ),
-        Container(
-          color: Colors.green,
-        ),
+        Tab1Page(),
+        Tab2Page(),
       ],
     );
   }
@@ -53,6 +51,7 @@ class _Navegacion extends StatelessWidget {
     return BottomNavigationBar(
       currentIndex: navegacionModel.paginaActual,
       onTap: (value) => navegacionModel.paginaActual = value,
+      selectedItemColor: myTheme.accentColor,
       items: const [
         BottomNavigationBarItem(
           icon: Icon(Icons.person_outline),
